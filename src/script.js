@@ -57,7 +57,7 @@ map.on ('load', function () {
       }
 
       // create the event listener
-      map.on ('contextmenu', 'uploaded-polygons', function (e) {
+      map.on ('click', 'uploaded-polygons', function (e) {
         const firstfeature = e.features[0];
         const properties = firstfeature.properties;
         var name = properties.areanm;
@@ -67,4 +67,6 @@ map.on ('load', function () {
         window.synth.speak (msg);
       });
     });
+
+    alert('Click on an area to have it read out to you.')
 });
