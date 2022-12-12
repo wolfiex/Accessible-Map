@@ -27,7 +27,7 @@ const map = new maplibregl.Map ({
 
 map.on ('load', function () {
   fetch (
-    'https://wolfiex.github.io/Accessible-Map/dist/ons-district21-bgc.geojson'
+    './ons-district21-bgc.geojson'
   )
     .then (d => d.json ())
     .then (geoJSONcontent => {
