@@ -1,14 +1,5 @@
 import maplibregl from 'maplibre-gl';
 
-
-
-if ('SpeechSynthesisUtterance' in window) {
-  window.synth = window.speechSynthesis;
-  window.msg = new SpeechSynthesisUtterance();
-  msg.text = 'speech tools enabled - "context menu". Use two finger click on the trackpad to trigger'
-  synth.speak(msg);
- }
-
 const map = new maplibregl.Map ({
   container: 'map',
   zoom: 7,
@@ -35,7 +26,9 @@ const map = new maplibregl.Map ({
 });
 
 map.on ('load', function () {
-  fetch ('https://wolfiex.github.io/Accessible-Map/dist/ons-district21-bgc.geojson')
+  fetch (
+    'https://wolfiex.github.io/Accessible-Map/dist/ons-district21-bgc.geojson'
+  )
     .then (d => d.json ())
     .then (geoJSONcontent => {
       console.log (geoJSONcontent);
@@ -58,6 +51,14 @@ map.on ('load', function () {
       });
     })
     .then (() => {
+      if ('SpeechSynthesisUtterance' in window) {
+        window.synth = window.speechSynthesis;
+        window.msg = new SpeechSynthesisUtterance ();
+        msg.text =
+          'speech tools enabled - "context menu". Use two finger click on the trackpad to trigger';
+        synth.speak (msg);
+      }
+
       // create the event listener
       map.on ('contextmenu', 'uploaded-polygons', function (e) {
         const firstfeature = e.features[0];
@@ -65,7 +66,7 @@ map.on ('load', function () {
         var name = properties.areanm;
 
         console.log (name, properties);
-        window.msg.text = `Area ${name}`
+        window.msg.text = `Area ${name}`;
         window.synth.speak (msg);
       });
     });
