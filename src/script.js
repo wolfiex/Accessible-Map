@@ -54,9 +54,6 @@ map.on ('load', function () {
       if ('SpeechSynthesisUtterance' in window) {
         window.synth = window.speechSynthesis;
         window.msg = new SpeechSynthesisUtterance ();
-        msg.text =
-          'speech tools enabled - "context menu". Use two finger click on the trackpad to trigger';
-        synth.speak (msg);
       }
 
       // create the event listener
